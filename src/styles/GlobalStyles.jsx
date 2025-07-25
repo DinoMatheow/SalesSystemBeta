@@ -1,12 +1,10 @@
-import { createGlobalStyle } from "styled-components";
-export const GlobalStyle = createGlobalStyle`
-    
-
-       body{
+import {createGlobalStyle} from "styled-components"
+export const GlobalStyles  = createGlobalStyle`
+    body{
         margin:0;
         padding:0;
         box-sizing:border-box;
-        background-color:${({theme})=>theme.bgtotal};
+        background-color: black; 
         font-family:"Poppins",sans-serif;
         color:#fff;
     }
