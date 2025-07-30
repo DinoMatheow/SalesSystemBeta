@@ -5,73 +5,88 @@ import { MyRoutes } from "./routers/routes";
 import { Sidebar } from "./components/organismo/sidebar/Sidebar";
 import { useThemeStore } from "./store/ThemeStore";
 import { useState } from "react";
+
 function App() {
   const [ sidebarOpen, setSidebarOpen ] = useState(false);
   const {  themeStyle } = useThemeStore();
+  
   return (
     <ThemeProvider theme={ themeStyle }>
-    <Container className={ sidebarOpen ? "active" : "" }>
-      <GlobalStyles />
+      <Container className={ sidebarOpen ? "active" : "" }>
+        <GlobalStyles />
 
-      <section className="contentSidebar"> 
-        <Sidebar 
-        state={ sidebarOpen } 
-      setState={()=> setSidebarOpen(!sidebarOpen)} />
-       </section>
-      <section className="contentMenu">Menu</section>
+        <section className="contentSidebar"> 
+          <Sidebar 
+            state={ sidebarOpen } 
+            setState={()=> setSidebarOpen(!sidebarOpen)} 
+          />
+        </section>
+        
+        <section className="contentMenu">Menu</section>
 
-      <section className="contentRouters"> <MyRoutes/> </section>
-
-
-    </Container>
+        <section className="contentRouters"> 
+          <MyRoutes/> 
+        </section>
+      </Container>
     </ThemeProvider>
-
   );
 }
 
 const Container = styled.main`
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  min-height: 100vh;
+  width: 100%;
   transition: 0.1s ease-in-out;
   color: ${({ theme })=> theme.text};
-  
-  
+  background-color: ${({ theme })=> theme.bgtotal};
 
   .contentSidebar {
     display: none;
-    /* background-color: rgba(220, 195, 33, 0.5); */
+    grid-row: 1;
+    grid-column: 1;
+    height: 100%;
   }
   
   .contentMenu {
-    /* display: block; */
     position: absolute;
-    /* background-color: rgba(193, 45, 193, 0.5); */
+    top: 0;
+    left: 0;
+    z-index: 1000;
   }
   
   .contentRouters {
-    /* background-color: rgba(11, 142, 198, 0.5); */
     grid-column: 1;
+    grid-row: 1;
     width: 100%;
-    /* min-height: 100vh; */
+    height: 100%;
+    min-height: 100vh;
   }
   
   @media ${Device.tablet} {
     grid-template-columns: 88px 1fr;
-    &.active{
-    grid-template-columns: 260px 1fr;
+    grid-template-rows: 1fr;
+    
+    &.active {
+      grid-template-columns: 260px 1fr;
     }
     
     .contentSidebar {
-      display: initial;
+      display: block;
+      grid-column: 1;
+      grid-row: 1;
     }
     
     .contentMenu {
-      display: none; /* oculto en tablet y escritorio */
+      display: none;
     }
     
     .contentRouters {
       grid-column: 2;
+      grid-row: 1;
       width: 100%;
+      height: 100%;
     }
   }
   
@@ -79,4 +94,5 @@ const Container = styled.main`
     display: none;
   }
 `
+
 export default App;
