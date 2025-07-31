@@ -39,9 +39,9 @@ const Container = styled.main`
   min-height: 100vh;
   width: 100%;
   transition: 0.1s ease-in-out;
-  color: ${({ theme })=> theme.text};
-  background-color: ${({ theme })=> theme.bgtotal};
-
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.bgtotal};
+  
   .contentSidebar {
     display: none;
     grid-row: 1;
@@ -62,6 +62,8 @@ const Container = styled.main`
     width: 100%;
     height: 100%;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
   
   @media ${Device.tablet} {
@@ -87,12 +89,9 @@ const Container = styled.main`
       grid-row: 1;
       width: 100%;
       height: 100%;
+      display: flex;
+      flex-direction: column;
     }
   }
-  
-  .contentMenuambur {
-    display: none;
-  }
-`
-
+`;
 export default App;
