@@ -2,13 +2,17 @@ import styled from "styled-components";
 import { Title } from "../atomos/Title";
 import { InputText2 } from "../organismo/forms/InpuText2";
 import { Btnsave } from "../moleculas/Btnsave";
+import { Device } from "../../styles/breakpoints";
+import { v } from "../../styles/variables";
+import { useAuthStore } from "../../store/AuthStore"
 
 export function LoginTemplate()  {
+  
+    const { loginGoogle } = useAuthStore();
   return (
     <Container> 
-      <section className="contentCard">
         <div className="card">
-          <Title>Ingresar</Title>
+          <Title $paddingbottom="50px" >Ingresar</Title>
           <form>
             <InputText2>
               <input 
@@ -30,8 +34,15 @@ export function LoginTemplate()  {
             />
 
           </form>
+
+        <Btnsave  funcion={loginGoogle}
+        titulo="Google" 
+        bgcolor="#fff"
+        color="0,0,0"
+        icono={ <v.iconogoogle/> }
+        />
+
         </div>
-      </section>
     </Container>
   )
 }
@@ -43,5 +54,19 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  
+  text-align: center;
+  flex-direction: column;
+    
+    .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      margin:20px;
+      @media ${ Device.tablet } {
+        width: 400px;
+      }
+
+    }
 `
