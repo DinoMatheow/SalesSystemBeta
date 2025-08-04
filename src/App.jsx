@@ -5,6 +5,7 @@ import { MyRoutes } from "./routers/routes";
 import { Sidebar } from "./components/organismo/sidebar/Sidebar";
 import { useThemeStore } from "./store/ThemeStore";
 import { useState } from "react";
+import { AuthContextProvider } from "./context/AuthContext";
 
 function App() {
   const [ sidebarOpen, setSidebarOpen ] = useState(false);
@@ -12,6 +13,8 @@ function App() {
   
   return (
     <ThemeProvider theme={ themeStyle }>
+<AuthContextProvider>
+
       <Container className={ sidebarOpen ? "active" : "" }>
         <GlobalStyles />
 
@@ -28,6 +31,9 @@ function App() {
           <MyRoutes/> 
         </section>
       </Container>
+
+</AuthContextProvider>
+
     </ThemeProvider>
   );
 }
